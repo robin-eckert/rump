@@ -142,13 +142,13 @@ static void hardwareInit(void) {
 	PORTC = 0xFF;   /* Port C = J4 pins 9-16 - enable pull-up */
 	DDRC  = 0x00;   /* Port C is input */
 
-	PORTD = 0x40;   /* 0100 0000 bin: LED on PD6 */
-	DDRD  = 0x45;   /* 0100 0101 bin: these pins are for USB output */
+	PORTD = 0xF0;   /* Port D = J4-20, J4-19, J4-18, J4-17, Set A, USB D+, Set B, USB D- */
+	DDRD  = 0x05;   /* 0000 0101 bin: these pins are for USB output */
 
 	/* USB Reset by device only required on Watchdog Reset */
 	_delay_us(11);   /* delay >10ms for USB reset */ 
 
-	DDRD = 0x40;    /* 0100 0000 bin: remove USB reset condition */
+	DDRD = 0x00;    /* 0000 0000 bin: remove USB reset condition */
 	/* configure timer 0 for a rate of 12M/(1024 * 256) = 45.78 Hz (~22ms) */
 	TCCR0 = 5;      /* timer 0 prescaler: 1024 */
 }
