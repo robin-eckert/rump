@@ -1,5 +1,5 @@
 /*********************************************************************
- * ibm_1391401.h - Keymap for US IBM 1391401 keyboard layout         *
+ * ibm_1394312.h - Keymap for DE IBM 1394312 keyboard layout         *
  *********************************************************************
  * rump is copyright (C) 2008 Chris Lee <clee@mg8.org>                *
  * based on c64key, copyright (C) 2006-2007 Mikkel Holm Olsen         *
@@ -15,15 +15,14 @@
  * OBDEV license for further details.                                 *
  *********************************************************************/
 
-#ifndef KEYMAP_1391401_H
-#define KEYMAP_1391401_H
+#ifndef KEYMAP_1394312_H
+#define KEYMAP_1394312_H
 #include <avr/pgmspace.h>
 
 /* Number of rows in IBM keyboard matrix */
-#define NUMROWS 16
+#define NUMROWS 20
 
 #include "usbcodes.h"
-
 
 
 /*            n8 n7 o7 n6 n5 o5 n4 n3 o3 n2 n1 o1                                   */
@@ -58,5 +57,7 @@ const unsigned char keymap[NUMROWS][8] PROGMEM = { // IBM Model M keymap
   {MOD_RCTRL,    KEY_cpslck,   KEY_Help,     KEY_tab,      KEY_esc,      0,            KEY_Menu,     KEY_Application}, // row S
   {MOD_LSHIFT,   MOD_RSHIFT,   0,            0,            0,            0,            0,            MOD_RALT      }   // row T
 };
+
+
 
 #endif
