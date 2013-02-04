@@ -171,9 +171,9 @@ static uchar scankeys(void) {
 
 		switch (row) {
 			case 0x0:
-				// Port C to weak pullups
-				DDRC  = 0x00;
-				PORTC = 0xFF;
+                                // Port D to weak pullups
+                                DDRD  = DDRD  & 0x0F;
+                                PORTD = PORTD | 0xF0;
 			case 0x1 ... 0x7:
 				// Scan on A
 				DDRA = data;
@@ -188,6 +188,15 @@ static uchar scankeys(void) {
 				DDRC = data;
 				PORTC = ~data;
 				break;
+                        case 0x10:
+				// Port C to weak pullups
+				DDRC  = 0x00;
+				PORTC = 0xFF;
+                        case 0x11 ... 0x13:
+                                // Scan on D
+                                DDRD = (DDRD & 0x0F) | (data << 4);
+                                PORTD = (PORTD & 0x0F) | ((~data & 0x0F) << 4);
+                                break;
 		}
 
 		/* Used to be small loop, but the compiler optimized it away ;-) */
