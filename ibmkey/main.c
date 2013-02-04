@@ -153,14 +153,6 @@ static void hardwareInit(void) {
 	TCCR0 = 5;      /* timer 0 prescaler: 1024 */
 }
 
-static void setLED(int on) {
-	if (on) {
-		PORTD &= ~0x40;
-	} else {
-		PORTD |= 0x40;
-	}
-}
-
 /* This function scans the entire keyboard, debounces the keys, and
    if a key change has been found, a new report is generated, and the
    function returns true to signal the transfer of the report. */
