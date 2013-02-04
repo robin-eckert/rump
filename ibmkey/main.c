@@ -117,10 +117,7 @@ char usbHidReportDescriptor[USB_CFG_HID_REPORT_DESCRIPTOR_LENGTH] PROGMEM = {
 };
 
 /* This buffer holds the last values of the scanned keyboard matrix */
-static uchar bitbuf[NUMROWS] = {
-	0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-	0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF
-};
+static uchar bitbuf[NUMROWS];
 
 /* The ReportBuffer contains the USB report sent to the PC */
 static uchar reportBuffer[8];    /* buffer for HID reports */
@@ -367,6 +364,7 @@ int main(void) {
 	uchar updateNeeded = 0;
 	uchar idleCounter = 0;
 	
+        memset(bitbuf, 0xFF, sizeof(bitbuf));
 	memset(reportCache, 0, sizeof(reportCache));
 
 	wdt_enable(WDTO_2S); /* Enable watchdog timer 2s */
